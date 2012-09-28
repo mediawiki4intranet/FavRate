@@ -87,6 +87,9 @@ $wgHooks['BeforePageDisplay'][] = 'FavRate::BeforePageDisplay';
 $wgHooks['WikilogPreloadComments'][] = 'FavRate::WikilogPreloadComments';
 $wgHooks['WikilogCommentToolLinks'][] = 'FavRate::WikilogCommentToolLinks';
 
+// Hooks for TemplatedPageList
+$wgHooks['TemplatedPageListAddSortOrders'][] = 'FavRate::TemplatedPageListAddSortOrders';
+
 // ResourceLoader module
 $wgResourceModules['ext.favrate'] = array(
     'localBasePath' => dirname(__FILE__),

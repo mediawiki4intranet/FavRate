@@ -49,6 +49,8 @@ Total visitors: $2. Total likes: $3.',
     'favrate-rating-title'      => 'Page rating',
     'favrate-rating-empty'      => 'No statistics to display.',
     'favrate-rating-item'       => '* [[:$1]] — $2 view{{PLURAL:$2|s}}, $3 link{{PLURAL:$3||s}}, $4 like{{PLURAL:$3||s}}.',
+
+    'tpl-order-rating'          => 'Page rating',
 );
 
 /** Russian
@@ -95,4 +97,6 @@ $messages['ru'] = array(
     'favrate-rating-title'      => 'Рейтинг страниц',
     'favrate-rating-empty'      => 'Нет статистики для отображения.',
     'favrate-rating-item'       => '* [[:$1]] — $2 просмотр{{PLURAL:$2||а|ов}}, $3 ссыл{{PLURAL:$3|ка|ки|ок}}, отмечено $4 пользовател{{PLURAL:$4|ем|ями}}.',
+
+    'tpl-order-rating'          => 'Рейтинг',
 );

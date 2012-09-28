@@ -251,6 +251,18 @@ class FavRate
     }
 
     /**
+     * Hook for TPL, adds a custom sort order
+     * FIXME: Query is not optimal :-(
+     */
+    static function TemplatedPageListAddSortOrders(&$order, &$orderAlias, &$orderJoin)
+    {
+        $dbr = wfGetDB(DB_SLAVE);
+        $subq = $dbr->selectSQLText('fr_page_stats', 'COUNT(1)', array('ps_page=page_id', 'ps_type=1'), __METHOD__);
+        $order['rating'] = "($subq)";
+        return true;
+    }
+
+    /**
      * Loads extension resource module everywhere :-(
      * Because we can't modify modules during sidebar construction
      */
