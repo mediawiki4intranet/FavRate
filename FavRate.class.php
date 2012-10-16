@@ -294,7 +294,7 @@ class FavRate
             else
                 $linkAlt = wfMsg($pageCounters['myfav'] ? 'favrate-remfav' : 'favrate-addfav');
             $html .= '<div class="favtoggle">'.
-                '<img class="favtogglebtn fav'.$pageCounters['myfav'].'" onclick="favRateToggleFav(this)"'.
+                '<img id="favToggleForPage" class="favtogglebtn fav'.$pageCounters['myfav'].'" onclick="favRateToggleFav(this)"'.
                 ' title="'.$linkAlt.'" alt=" " src="'.$blank.'" /></div>';
             // Rating bars
             $html .= self::bar($pageCounters['counter'], $egFavRateMaxHits, $egFavRateHitsColor, wfMsg('favrate-hits'));
