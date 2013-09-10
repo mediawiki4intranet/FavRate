@@ -79,8 +79,7 @@ class FavRate
             )).'"]';
         }
         $title = Title::newFromId($pageid);
-        if (!$title || !$title->exists() ||
-            method_exists($title, 'userCanReadEx') && !$title->userCanReadEx())
+        if (!$title || !$title->exists() || !$title->userCanRead())
         {
             // Page is invalid or unreadable
             return '[false,"'.addslashes(wfMsg('favrate-invalid-page')).'"]';
@@ -285,7 +284,6 @@ class FavRate
         $pageCounters = self::getPageCounters($wgArticle ? $wgArticle : $wgTitle, $wgUser ? $wgUser->getId() : 0);
         if ($pageCounters)
         {
-            wfLoadExtensionMessages('FavRate');
             $blank = "$wgScriptPath/extensions/FavRate/blank.gif";
             $html = '<div style="margin-top: 6px">';
             // Toggle button and status message placeholder

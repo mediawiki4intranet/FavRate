@@ -30,7 +30,6 @@ class SpecialFavRate extends IncludableSpecialPage
     function __construct()
     {
         parent::__construct('FavRate');
-        wfLoadExtensionMessages('FavRate');
     }
 
     /**
@@ -69,8 +68,7 @@ class SpecialFavRate extends IncludableSpecialPage
     {
         global $wgOut, $wgLang;
         $title = Title::newFromText($pagename);
-        if (!$title || !$title->getArticleId() ||
-            method_exists($title, 'userCanReadEx') && !$title->userCanReadEx())
+        if (!$title || !$title->getArticleId() || !$title->userCanRead())
         {
             // Page is unreadable, special or does not exist at all
             $wgOut->showErrorPage('favrate-invalid-title', 'favrate-invalid-title-text', array($pagename));
