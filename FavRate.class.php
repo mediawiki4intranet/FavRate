@@ -279,7 +279,7 @@ class FavRate
         global $wgTitle, $wgArticle, $wgUser, $wgRequest, $wgScriptPath, $wgOut;
         global $egFavRateMaxHits, $egFavRateMaxFav, $egFavRateMaxLinks, $egFavRatePublicLogs;
         global $egFavRateHitsColor, $egFavRateFavColor, $egFavRateLinksColor;
-        if (!isset($bar['favratebar']))
+        if (!isset($bar['favratebar']) || !$wgTitle)
             return true;
         $pageCounters = self::getPageCounters($wgArticle ? $wgArticle : $wgTitle, $wgUser ? $wgUser->getId() : 0);
         if ($pageCounters)
