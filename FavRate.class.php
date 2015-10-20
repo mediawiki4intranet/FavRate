@@ -79,7 +79,7 @@ class FavRate
             )).'"]';
         }
         $title = Title::newFromId($pageid);
-        if (!$title || !$title->exists() || !$title->userCanRead())
+        if (!$title || !$title->exists() || !$title->userCan('read'))
         {
             // Page is invalid or unreadable
             return '[false,"'.addslashes(wfMsg('favrate-invalid-page')).'"]';
@@ -164,7 +164,8 @@ class FavRate
         $pageId = $article->getId();
         if (!$pageId)
             return false;
-        $counters['counter'] = $article->getCount();
+        // FIXME: MediaWiki 1.25 and later has no page_counter feature!
+        $counters['counter'] = method_exists($article, 'getCount') ? $article->getCount() : NULL;
         $res = $dbr->select(
             'fr_page_stats',
             array('COUNT(*) fav', 'SUM(ps_user='.intval($userId).') myfav'),
@@ -295,7 +296,8 @@ class FavRate
                 '<img id="favToggleForPage" class="favtogglebtn fav'.$pageCounters['myfav'].'" onclick="favRateToggleFav(this)"'.
                 ' title="'.$linkAlt.'" alt=" " src="'.$blank.'" /></div>';
             // Rating bars
-            $html .= self::bar($pageCounters['counter'], $egFavRateMaxHits, $egFavRateHitsColor, wfMsg('favrate-hits'));
+            if ($pageCounters['counter'] !== NULL)
+                $html .= self::bar($pageCounters['counter'], $egFavRateMaxHits, $egFavRateHitsColor, wfMsg('favrate-hits'));
             $html .= self::bar($pageCounters['fav'], $egFavRateMaxFav, $egFavRateFavColor, wfMsg('favrate-fav'));
             $html .= self::bar($pageCounters['links'], $egFavRateMaxLinks, $egFavRateLinksColor, wfMsg('favrate-links'));
             $html .= '<div class="favlinks">';

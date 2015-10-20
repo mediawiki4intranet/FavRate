@@ -68,7 +68,7 @@ class SpecialFavRate extends IncludableSpecialPage
     {
         global $wgOut, $wgLang;
         $title = Title::newFromText($pagename);
-        if (!$title || !$title->getArticleId() || !$title->userCanRead())
+        if (!$title || !$title->getArticleId() || !$title->userCan('read'))
         {
             // Page is unreadable, special or does not exist at all
             $wgOut->showErrorPage('favrate-invalid-title', 'favrate-invalid-title-text', array($pagename));

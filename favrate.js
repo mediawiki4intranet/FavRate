@@ -12,11 +12,8 @@
     var favBtn = null; // last used button
 
     // AJAX response handler
-    var favRateToggleCallback = function(request, btn, pageId, callback, add)
+    var favRateToggleCallback = function(r, btn, pageId, callback, add)
     {
-        if (request.status != 200)
-            return;
-        var r = eval(request.responseText);
         if (!favStatus)
         {
             favStatus = document.createElement('div');
@@ -65,10 +62,21 @@
     window.favRateComment = function(pageId)
     {
         var input = document.getElementById('favrate-comment-'+pageId);
-        sajax_do_call('efFavRateSet', [ pageId, 1, input.value ], function(request) {
-            favStatus.className = 'favstatus';
-            if (input.value != '')
-                favBtn.title = mw.msg('favrate-remfav-cmt', input.value);
+        $.ajax({
+            type: "POST",
+            url: mw.util.wikiScript(),
+            data: {
+                action: 'ajax',
+                rs: 'efFavRateSet',
+                rsargs: [ pageId, 1, input.value ]
+            },
+            dataType: 'json',
+            success: function(result)
+            {
+                favStatus.className = 'favstatus';
+                if (input.value != '')
+                    favBtn.title = mw.msg('favrate-remfav-cmt', input.value);
+            }
         });
     };
 
@@ -79,8 +87,20 @@
         var add = btn.className.indexOf('fav0') > -1 ? 1 : 0;
         if (pageId && u !== null)
         {
-            sajax_do_call('efFavRateSet', [ pageId, add ],
-                function(request) { favRateToggleCallback(request, btn, pageId, callback, add); });
+            $.ajax({
+                type: "POST",
+                url: mw.util.wikiScript(),
+                data: {
+                    action: 'ajax',
+                    rs: 'efFavRateSet',
+                    rsargs: [ pageId, add ]
+                },
+                dataType: 'json',
+                success: function(result)
+                {
+                    favRateToggleCallback(result, btn, pageId, callback, add);
+                }
+            });
         }
     };
 
