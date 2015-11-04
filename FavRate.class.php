@@ -37,9 +37,9 @@ class FavRate
      */
     static function LoadExtensionSchemaUpdates()
     {
-        global $wgExtNewTables, $wgExtNewFields;
+        global $wgExtNewTables, $wgExtNewFields, $wgDBtype;
         $dir = dirname(__FILE__);
-        $wgExtNewTables[] = array('fr_page_stats', "$dir/FavRate.sql");
+        $wgExtNewTables[] = array('fr_page_stats', "$dir/FavRate.$wgDBtype.sql");
         $wgExtNewFields[] = array('fr_page_stats', 'ps_comment', "$dir/ps_comment.sql");
         return true;
     }
