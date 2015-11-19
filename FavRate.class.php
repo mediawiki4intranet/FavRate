@@ -125,7 +125,7 @@ class FavRate
                 array(
                     'ps_page'       => $pageid,
                     'ps_user'       => $userid,
-                    'ps_timestamp'  => wfTimestamp(TS_MW),
+                    'ps_timestamp'  => $dbw->timestamp(),
                     'ps_type'       => $fav,
                     'ps_comment'    => $comment,
                 ), __METHOD__
