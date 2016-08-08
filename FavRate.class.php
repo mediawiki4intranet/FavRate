@@ -268,7 +268,8 @@ class FavRate
      */
     static function BeforePageDisplay($out, $skin)
     {
-        $out->addModules('ext.favrate');
+        $out->addModuleStyles('ext.favrate');
+        $out->addModuleScripts('ext.favrate');
         return true;
     }
 

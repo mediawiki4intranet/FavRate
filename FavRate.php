@@ -97,6 +97,7 @@ $wgResourceModules['ext.favrate'] = array(
     'scripts' => array('favrate.js'),
     'styles' => array('favrate.css'),
     'messages' => array('favrate-addfav', 'favrate-remfav', 'favrate-remfav-cmt'),
+    'position' => 'top',
 );
 
 // Default configuration values
