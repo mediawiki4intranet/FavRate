@@ -48,7 +48,7 @@ class FavRate
      * Unique page view tracking for ALL pages
      * WARNING: probably not recommended for large sites with high load
      */
-    static function ArticleViewHeader(&$article, &$outputDone, &$pcache)
+    static function ArticleViewHeader($article, &$outputDone, &$pcache)
     {
         global $wgUser, $egFavRateLogVisitors;
         // Only track authorized users
